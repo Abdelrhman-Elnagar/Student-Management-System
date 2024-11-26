@@ -1,0 +1,9 @@
+get method ->anchor link
+transfer data (route->controller->view) -> compact,with,array
+html accept only get and post
+name for any input in form
+-request,response
+-route share , route composer
+-session
+نبعت داتا على جميييييييييييييييييييييع الاصعدة
+

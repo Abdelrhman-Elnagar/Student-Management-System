@@ -17,7 +17,9 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
-                    <h2 class="heading-section">Students CRUD</h2>
+                    <a href="#">
+                        <h2 class="heading-section">Students CRUD</h2>
+                    </a>
                 </div>
             </div>
             <div class="row">
@@ -34,134 +36,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="alert" role="alert">
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>markotto@email.com</td>
-                                    <td>
-                                        <!-- View Icon -->
-                                        <a href="{{ route('student.create') }}" class="view" data-toggle="tooltip" title="View">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        <!-- Edit Icon -->
-                                        <a href="{{ route('student.create') }}" class="edit" data-toggle="tooltip" title="Edit">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <!-- Delete Icon -->
-                                        <form action="{{ route('student.create') }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="delete" style="border:none; background:none;" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr class="alert" role="alert">
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>jacobthornton@email.com</td>
-                                    <td>
-                                        <!-- View Icon -->
-                                        <a href="{{ route('student.create') }}" class="view" data-toggle="tooltip" title="View">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        <!-- Edit Icon -->
-                                        <a href="{{ route('student.create') }}" class="edit" data-toggle="tooltip" title="Edit">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <!-- Delete Icon -->
-                                        <form action="{{ route('student.create') }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="delete" style="border:none; background:none;" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr class="alert" role="alert">
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>larrybird@email.com</td>
-                                    <td>
-                                        <!-- View Icon -->
-                                        <a href="{{ route('student.create') }}" class="view" data-toggle="tooltip" title="View">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        <!-- Edit Icon -->
-                                        <a href="{{ route('student.create') }}" class="edit" data-toggle="tooltip" title="Edit">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <!-- Delete Icon -->
-                                        <form action="{{ route('student.create') }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="delete" style="border:none; background:none;" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr class="alert" role="alert">
-                                    <th scope="row">4</th>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>johndoe@email.com</td>
-                                    <td>
-                                        <!-- View Icon -->
-                                        <a href="{{ route('student.create') }}" class="view" data-toggle="tooltip" title="View">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        <!-- Edit Icon -->
-                                        <a href="{{ route('student.create') }}" class="edit" data-toggle="tooltip" title="Edit">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <!-- Delete Icon -->
-                                        <form action="{{ route('student.create') }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="delete" style="border:none; background:none;" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr class="alert" role="alert">
-                                    <th scope="row">5</th>
-                                    <td>Gary</td>
-                                    <td>Bird</td>
-                                    <td>garybird@email.com</td>
-                                    <td>
-                                        <!-- View Icon -->
-                                        <a href="{{ route('student.create') }}" class="view" data-toggle="tooltip" title="View">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        <!-- Edit Icon -->
-                                        <a href="{{ route('student.create') }}" class="edit" data-toggle="tooltip" title="Edit">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <!-- Delete Icon -->
-                                        <form action="{{ route('student.create') }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="delete" style="border:none; background:none;" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                @foreach ($students as $student)
+                                    <tr class="alert" role="alert">
+                                        {{-- @dd($students) --}}
+                                        <th scope="row">{{ $student['id'] }}</th>
+                                        <td>{{ $student['fnm'] }}</td>
+                                        <td>{{ $student['lnm'] }}</td>
+                                        <td>{{ $student['em'] }}</td>
+
+                                        <td class="d-flex">
+                                            <a href="{{ route('student.show', $student['id']) }}" class="view"
+                                                data-toggle="tooltip" title="View">
+                                                <i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('student.edit', $student['id']) }}" class="edit"
+                                                data-toggle="tooltip" title="Edit">
+                                                <i class="fa fa-pencil"></i></a>
+                                            <form action="{{ route('student.destroy', $student['id']) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <a class="delete" data-toggle="tooltip" title="Delete" href="">
+                                                    {{-- <button type="submit" class="delete">Delete</button>    --}}
+                                                    <i class="fa fa-trash"></i></a>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
-                    </div>
-                    <!-- Add Student Button -->
-                    <div class="text-left mt-3">
-                        <a href="{{ route('student.create') }}" class="btn btn-primary">
-                            Add Student
-                        </a>
+                        <!-- Add Student Button -->
+                        <div class="text-left mt-3">
+                            <a href="{{ route('student.create') }}" class="btn btn-primary">
+                                Add Student
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

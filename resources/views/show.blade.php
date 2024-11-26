@@ -7,11 +7,13 @@
     integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ asset('card/style.css') }}">
 
+
+<title>Show Student</title>
 <section>
     <div class="container">
-        <div class="row">
-            <!--Profile Card 3-->
-            <div class="col-md-4">
+        <div class="row justify-content-center">
+            <!-- Profile Card  -->
+            <div class="col-md-4 mx-auto">
                 <div class="card profile-card-3">
                     <div class="background-block">
                         <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
@@ -20,15 +22,18 @@
                     <div class="profile-thumb-block">
                         <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="profile-image" class="profile" />
                     </div>
-                    <div class="card-content">
-                        <h2>Justin Tim<small>Designer</small></h3>
-                            <div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a
-                                    href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i
-                                        class="fa fa-google-plus"></i></a>
-                            </div>
+                    <div class="card-content text-center">
+                        <h2>{{ "$singleStudent[fnm] $singleStudent[lnm]" }}<small>{{ $singleStudent['em'] }}</small></h2>
+                        <div class="icon-block">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                        </div>
                     </div>
                 </div>
-                <p class="mt-3 w-100 float-left text-center"><strong>Modren Profile Card</strong></p>
+                <p class="mt-3 w-100 text-center">
+                    <a href="{{ route('student.index') }}" class="btn-link">Home</a>
+                </p>
             </div>
         </div>
     </div>

@@ -11,7 +11,22 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        return view("index");
+        // $students = [
+        //     'id'=>[1,2,3],
+        //     'fnm'=>['ali','ahmed','waleed'],
+        //     'lnm'=>['ahmed','ali','sayed'],
+        //     'em'=>['ali@gmail.com','ahmed@gmail.com','waleed@gmail.com'],
+        // ];
+
+        //mysqli_fetch_assoc
+
+        $students = [
+            ['id' => 1, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
+            ['id' => 2, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
+            ['id' => 3, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
+            ['id' => 4, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
+        ];
+        return view("index", compact('students'));
     }
 
     /**
@@ -19,8 +34,8 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view("create");
 
+        return view("create");
     }
 
     /**
@@ -28,7 +43,16 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $storeStudent = $request;
+        // $fnm=$storeStudent->studentFName;
+        // $lnm=$storeStudent->studentLName;
+        // $em=$storeStudent->studentEmail;
+        // dd($storeStudent->all(),$fnm,$lnm,$em);
+
+        //store $storeStudent in db
+
+        // return redirect()->route("student.index",compact("id")); //error
+        return redirect()->route("student.index");
     }
 
     /**
@@ -36,7 +60,8 @@ class StudentsController extends Controller
      */
     public function show(string $id)
     {
-        return view("show");
+        $singleStudent = ['id' => 1, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'];
+        return view("show", compact("singleStudent"));
     }
 
     /**
@@ -44,8 +69,7 @@ class StudentsController extends Controller
      */
     public function edit(string $id)
     {
-        return view("edit");
-
+        return view("edit", compact("id"));
     }
 
     /**
@@ -53,7 +77,17 @@ class StudentsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request);
+
+        // $fnm=$request->studentFName;
+        // $lnm=$request->studentLName;
+        // $em=$request->studentEmail;
+        // dd($fnm,$lnm,$em);
+
+        //edit this data with data in db by id
+
+
+        return redirect()->route("student.index");
     }
 
     /**
@@ -61,6 +95,7 @@ class StudentsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //delete row from db by id
+        return redirect()->route("student.index", compact('id'));
     }
 }
