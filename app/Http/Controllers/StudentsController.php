@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
@@ -20,13 +21,14 @@ class StudentsController extends Controller
 
         //mysqli_fetch_assoc
 
-        $students = [
-            ['id' => 1, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
-            ['id' => 2, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
-            ['id' => 3, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
-            ['id' => 4, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
-        ];
-        return view("index", compact('students'));
+        // $students = [
+        //     ['id' => 1, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
+        //     ['id' => 2, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
+        //     ['id' => 3, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
+        //     ['id' => 4, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
+        // ];
+        $Students=User::all();
+        return view("index", compact('Students'));
     }
 
     /**
@@ -44,12 +46,17 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
         $storeStudent = $request;
-        // $fnm=$storeStudent->studentFName;
-        // $lnm=$storeStudent->studentLName;
-        // $em=$storeStudent->studentEmail;
+        $fnm=$storeStudent->studentFName;
+        $lnm=$storeStudent->studentLName;
+        $em=$storeStudent->studentEmail;
         // dd($storeStudent->all(),$fnm,$lnm,$em);
 
         //store $storeStudent in db
+        $user=new User();
+        $user->fName=$fnm;
+        $user->lName=$lnm;
+        $user->email=$em;
+        $user->save();
 
         // return redirect()->route("student.index",compact("id")); //error
         return redirect()->route("student.index");
@@ -58,9 +65,22 @@ class StudentsController extends Controller
     /**
      * Display the specified resource.
      */
+
+    //convention over confegration//
+
     public function show(string $id)
+    //route model binding
     {
-        $singleStudent = ['id' => 1, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'];
+        // $singleStudent = ['id' => 1, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'];
+
+        // $singleStudent=User::where('id',$id)->first(); //model object
+        // $singleStudent=User::where('id',$id)->get(); //collection object
+        // $singleStudent=User::find($id);
+        $singleStudent=User::findOrFail($id);
+
+        // if(is_null($singleStudent)){
+        //     return redirect()->route('student.index');
+        // }
         return view("show", compact("singleStudent"));
     }
 
@@ -69,7 +89,8 @@ class StudentsController extends Controller
      */
     public function edit(string $id)
     {
-        return view("edit", compact("id"));
+        $user=User::findOrFail($id);
+        return view("edit", compact("user"));
     }
 
     /**
@@ -77,17 +98,22 @@ class StudentsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // dd($request);
-
-        // $fnm=$request->studentFName;
-        // $lnm=$request->studentLName;
-        // $em=$request->studentEmail;
-        // dd($fnm,$lnm,$em);
+        $student=$request;
+        $fnm=$student->studentFName;
+        $lnm=$student->studentLName;
+        $em=$student->studentEmail;
 
         //edit this data with data in db by id
+        $user=User::find($id);
+        $user->update([
+            'fName'=>$fnm,
+            'lName'=>$lnm,
+            'email'=>$em,
+        ]);
 
 
-        return redirect()->route("student.index");
+
+        return redirect()->route("student.show",$user->id);
     }
 
     /**
@@ -96,6 +122,8 @@ class StudentsController extends Controller
     public function destroy(string $id)
     {
         //delete row from db by id
-        return redirect()->route("student.index", compact('id'));
+        $student=User::findOrFail($id);
+        $student->delete();
+        return redirect()->route("student.index");
     }
 }

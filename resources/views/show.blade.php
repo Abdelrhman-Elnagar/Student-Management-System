@@ -23,7 +23,7 @@
                         <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="profile-image" class="profile" />
                     </div>
                     <div class="card-content text-center">
-                        <h2>{{ "$singleStudent[fnm] $singleStudent[lnm]" }}<small>{{ $singleStudent['em'] }}</small></h2>
+                        <h2>{{ "$singleStudent->fName $singleStudent->lName" }}<small>{{ $singleStudent->email }}</small></h2>
                         <div class="icon-block">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>

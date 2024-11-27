@@ -4,24 +4,24 @@
     <div class="text">
         Edit Student
     </div>
-    <form action="{{ route('student.update',1) }}" method="POST">
+    <form action="{{ route('student.update',$user->id) }}" method="POST">
         @method('PUT')
         @csrf
         <div class="form-row">
             <div class="input-data">
-                <input type="text" name="studentFName" required>
+                <input type="text" name="studentFName" value="{{ $user->fName }}" required>
                 <div class="underline"></div>
                 <label for="">First Name</label>
             </div>
             <div class="input-data">
-                <input type="text" name="studentLName" required>
+                <input type="text" name="studentLName" value="{{ $user->lName }}" required>
                 <div class="underline"></div>
                 <label for="">Last Name</label>
             </div>
         </div>
         <div class="form-row">
             <div class="input-data">
-                <input type="email" name="studentEmail" required>
+                <input type="email" name="studentEmail" value="{{ $user->email }}" required>
                 <div class="underline"></div>
                 <label for="">Email Address</label>
             </div>

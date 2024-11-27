@@ -36,13 +36,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($students as $student)
+                                @foreach ($Students as $student)
                                     <tr class="alert" role="alert">
                                         {{-- @dd($students) --}}
                                         <th scope="row">{{ $student['id'] }}</th>
-                                        <td>{{ $student['fnm'] }}</td>
-                                        <td>{{ $student['lnm'] }}</td>
-                                        <td>{{ $student['em'] }}</td>
+                                        <td>{{ $student['fName'] }}</td>
+                                        <td>{{ $student['lName'] }}</td> {{-- this object not array but magic method -> [''] --}}
+                                        <td>{{ $student->email }}</td>
 
                                         <td class="d-flex">
                                             <a href="{{ route('student.show', $student['id']) }}" class="view"
@@ -51,7 +51,8 @@
                                             <a href="{{ route('student.edit', $student['id']) }}" class="edit"
                                                 data-toggle="tooltip" title="Edit">
                                                 <i class="fa fa-pencil"></i></a>
-                                            <form action="{{ route('student.destroy', $student['id']) }}" method="POST">
+                                            <form action="{{ route('student.destroy', $student['id']) }}"
+                                                method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <a class="delete" data-toggle="tooltip" title="Delete" href="">
