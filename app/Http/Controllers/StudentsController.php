@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -43,8 +44,10 @@ class StudentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
+        $request->validated();
+
         $storeStudent = $request;
         $fnm=$storeStudent->studentFName;
         $lnm=$storeStudent->studentLName;
@@ -96,8 +99,10 @@ class StudentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StudentRequest $request, string $id)
     {
+        $request->validated();
+
         $student=$request;
         $fnm=$student->studentFName;
         $lnm=$student->studentLName;

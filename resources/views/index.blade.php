@@ -13,15 +13,33 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ route('student.index') }}">Student CRUD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('student.index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Posts</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <section>
         <div class="container">
-            <div class="row justify-content-center">
+            {{-- <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
                     <a href="#">
                         <h2 class="heading-section">Students CRUD</h2>
                     </a>
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-wrap">
@@ -75,6 +93,9 @@
             </div>
         </div>
     </section>
+    <footer class="bg-light text-center py-3 mt-4">
+        <p>&copy; 2024 Student Management System. All Rights Reserved.</p>
+    </footer>
     <script src="{{ asset('table2/js/jquery.min.js') }}"></script>
     <script src="{{ asset('table2/js/popper.js') }}"></script>
     <script src="{{ asset('table2/js/bootstrap.min.js') }}"></script>
