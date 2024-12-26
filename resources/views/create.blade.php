@@ -44,7 +44,7 @@
             </div>
                 <div class="input-data">
                     <div class="inner"></div>
-                    <input type="button" value="cancel" onclick="history.back();">
+                    <input type="button" value="cancel" onclick="window.location.href='{{ route('student.index') }}';">
                 </div>
             </div>
         </div>

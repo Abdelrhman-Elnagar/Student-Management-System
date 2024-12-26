@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('student.index') }}">Student CRUD</a>
+            <a class="navbar-brand" href="{{ route('student.index') }}">Student Management System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,6 +29,9 @@
                     </li>
                 </ul>
             </div>
+            @if (session()->has('success'))
+                <h1 class="alert alert-success">msg=={{ session()->get('success') }}</h1>
+            @endif
         </div>
     </nav>
     <section>
@@ -73,9 +76,9 @@
                                                 method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                <a class="delete" data-toggle="tooltip" title="Delete" href="">
-                                                    {{-- <button type="submit" class="delete">Delete</button>    --}}
-                                                    <i class="fa fa-trash"></i></a>
+                                                {{-- <a class="delete" data-toggle="tooltip" title="Delete" href=""> --}}
+                                                    <button type="submit" class="delete" data-toggle="tooltip" title="Delete" onclick="confirm('Are you sure to delete this student?') //i click cancel and the student was deleted">
+                                                    <i class="fa fa-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>

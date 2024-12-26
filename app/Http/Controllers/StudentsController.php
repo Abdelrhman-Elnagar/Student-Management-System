@@ -62,7 +62,7 @@ class StudentsController extends Controller
         $user->save();
 
         // return redirect()->route("student.index",compact("id")); //error
-        return redirect()->route("student.index");
+        return redirect()->route("student.index")->with('success','you added student success');
     }
 
     /**

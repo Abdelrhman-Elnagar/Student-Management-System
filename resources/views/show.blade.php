@@ -20,9 +20,9 @@
                         <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
                             alt="profile-sample1" class="background" />
                     </div>
-                    <div class="profile-thumb-block">
+                    {{-- <div class="profile-thumb-block">
                         <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="profile-image" class="profile" />
-                    </div>
+                    </div> --}}
                     <div class="card-content text-center">
                         <h2>{{ "$singleStudent->fName $singleStudent->lName" }}<small>{{ $singleStudent->email }}</small></h2>
                         <div class="icon-block">
