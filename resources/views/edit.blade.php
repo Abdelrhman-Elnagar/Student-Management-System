@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('form/style.css') }}">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<title>Edit Student</title>
+<x-page-title pageTitle="Edit Student"></x-page-title>
+
 <div class="container">
     @if ($errors->any())
         <div class="alert alert-danger">

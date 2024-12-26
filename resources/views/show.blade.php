@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="{{ asset('card/style.css') }}">
 
 
-<title>Show Student</title>
+<x-page-title pageTitle="Show Student"></x-page-title>
+
 <section>
     <div class="container">
         <div class="row justify-content-center">
