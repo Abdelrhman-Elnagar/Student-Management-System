@@ -1,3 +1,5 @@
 <div>
-    <!-- If you do not have a consistent goal in life, you can not live it in a consistent way. - Marcus Aurelius -->
+    <x-header-layout></x-header-layout>
+        {{ $slot }}
+    <x-footer-layout></x-footer-layout>
 </div>

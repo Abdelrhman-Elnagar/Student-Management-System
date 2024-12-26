@@ -1,17 +1,5 @@
-<!doctype html>
-<html lang="en">
 
-<head>
-    <x-page-title pageTitle="CRUD"></x-page-title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('table2/css/style.css') }}">
-
-</head>
-
+<x-app-layout>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -96,14 +84,4 @@
             </div>
         </div>
     </section>
-    <footer class="bg-light text-center py-3 mt-4">
-        <p>&copy; 2024 Student Management System. All Rights Reserved.</p>
-    </footer>
-    <script src="{{ asset('table2/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('table2/js/popper.js') }}"></script>
-    <script src="{{ asset('table2/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('table2/js/main.js') }}"></script>
-
-</body>
-
-</html>
+</x-app-layout>
