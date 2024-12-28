@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="{{ asset('card/style.css') }}">
 
 
-<x-page-title pageTitle="Show Student"></x-page-title>
 
 <section>
     <div class="container">
