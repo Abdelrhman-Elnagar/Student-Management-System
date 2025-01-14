@@ -13,22 +13,10 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        // $students = [
-        //     'id'=>[1,2,3],
-        //     'fnm'=>['ali','ahmed','waleed'],
-        //     'lnm'=>['ahmed','ali','sayed'],
-        //     'em'=>['ali@gmail.com','ahmed@gmail.com','waleed@gmail.com'],
-        // ];
 
-        //mysqli_fetch_assoc
 
-        // $students = [
-        //     ['id' => 1, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
-        //     ['id' => 2, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
-        //     ['id' => 3, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
-        //     ['id' => 4, 'fnm' => 'ali', 'lnm' => 'ahmed', 'em' => 'ali@gmail.com'],
-        // ];
-        $Students=User::all();
+        // $Students=User::all();
+        $Students=User::paginate(3);
         return view("index", compact('Students'));
     }
 
