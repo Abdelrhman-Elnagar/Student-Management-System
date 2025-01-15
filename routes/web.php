@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\StudentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ Route::get('/', function () {
 });
 
 Route::resource('student', StudentsController::class);
+
+Route::resource('course', CourseController::class);
 
 //,'middleware' => 'guest','auth' (explain)
 Route::group(['prefix' => 'auth'],function(){

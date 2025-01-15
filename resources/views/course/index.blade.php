@@ -11,6 +11,8 @@
 
                 @include('includes.navbar')
 
+                </div>
+
                 {{-- sweet alert --}}
                 @if (session()->has('success'))
                     <script>
@@ -25,17 +27,17 @@
                         });
                     </script>
                 @elseif (session()->has('error'))
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error!',
-                                text: '{{ session('error') }}',
-                                confirmButtonText: 'OK',
-                                timer: 3000
-                            });
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: '{{ session('error') }}',
+                            confirmButtonText: 'OK',
+                            timer: 3000
                         });
-                    </script>
+                    });
+                </script>
                 @endif
 
             </div>
@@ -56,36 +58,35 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>ID no.</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email</th>
-                                        <th>Action</th>
+                                        <th>course name</th>
+                                        <th>about</th>
+                                        <th>certificate</th>
+                                        <th>action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($Students as $student)
+                                    @foreach ($courses as $course)
                                         <tr class="alert" role="alert">
                                             {{-- @dd($students) --}}
                                             <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $student['fName'] }}</td>
-                                            <td>{{ $student['lName'] }}</td> {{-- this object not array but magic method -> [''] --}}
-                                            <td>{{ $student->email }}</td>
+                                            <td>{{ $course['name'] }}</td>
+                                            <td>{{ $course['bio'] }}</td>
+                                            <td>{{ $course->certificate->name }}</td>
 
                                             <td class="d-flex">
-                                                <a href="{{ route('student.show', $student->id) }}" class="view"
+                                                <a href="{{ route('course.show', $course->id) }}" class="view"
                                                     data-toggle="tooltip" title="View">
                                                     <i class="fa fa-eye"></i></a>
-                                                <a href="{{ route('student.edit', $student->id) }}" class="edit"
+                                                <a href="{{ route('course.edit', $course->id) }}" class="edit"
                                                     data-toggle="tooltip" title="Edit">
                                                     <i class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('student.destroy', $student->id) }}"
-                                                    method="POST" id="deleteForm_{{ $student->id }}">
+                                                <form action="{{ route('course.destroy', $course->id) }}"
+                                                    method="POST" id="deleteForm_{{ $course->id }}">
                                                     @method('DELETE')
                                                     @csrf
                                                     {{-- <a class="delete" data-toggle="tooltip" title="Delete" href=""> --}}
                                                     <button type="button" class="delete" data-toggle="tooltip"
-                                                        title="Delete" onclick="confirmDelete({{ $student->id }})"> <i
-                                                            class="fa fa-trash"></i></button>
+                                                        title="Delete" onclick="confirmDelete({{ $course->id }})"> <i class="fa fa-trash" ></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -95,13 +96,13 @@
 
                             {{-- pagination --}}
                             <div class="d-flex justify-content-center">
-                                {{ $Students->links('pagination::bootstrap-4') }}
+                                {{ $courses->links('pagination::bootstrap-4') }}
                             </div>
 
                             <!-- Add Student Button -->
                             <div class="text-left mt-3">
-                                <a href="{{ route('student.create') }}" class="btn btn-primary">
-                                    Add Student
+                                <a href="{{ route('course.create') }}" class="btn btn-primary">
+                                    Add course
                                 </a>
                             </div>
                         </div>
@@ -112,7 +113,7 @@
 
         {{-- modal delete --}}
         <script>
-            function confirmDelete(studentId) {
+            function confirmDelete(courseId) {
                 Swal.fire({
                     title: 'Are you sure?',
                     text: 'You will not be able to recover this student!',
@@ -124,7 +125,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Submit the delete form
-                        document.getElementById('deleteForm_' + studentId).submit();
+                        document.getElementById('deleteForm_' + courseId).submit();
                     }
                 });
             }

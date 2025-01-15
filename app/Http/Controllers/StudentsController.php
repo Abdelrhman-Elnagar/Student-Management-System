@@ -115,8 +115,15 @@ class StudentsController extends Controller
     public function destroy(string $id)
     {
         //delete row from db by id
-        $student=User::findOrFail($id);
-        $student->delete();
-        return redirect()->route("student.index");
+        try {
+            $student=User::findOrFail($id);
+            $student->delete();
+            return redirect()->route("student.index")->with('success', 'Student deleted successfully!');;
+                } catch (\Exception $e) {
+                    return redirect()->route("student.index")->with('error', 'Failed to delete student!');
+
+
+        }
+
     }
 }
