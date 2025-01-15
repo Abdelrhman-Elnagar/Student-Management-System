@@ -6,6 +6,8 @@
     <script src="{{ asset('table2/js/popper.js') }}"></script>
     <script src="{{ asset('table2/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('table2/js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </body>
 

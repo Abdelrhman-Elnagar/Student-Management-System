@@ -64,11 +64,22 @@
                     </ul>
 
                 </div>
+
+                {{-- sweet alert --}}
                 @if (session()->has('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session()->get('success') }}
-                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: '{{ session('success') }}',
+                                confirmButtonText: 'OK',
+                                timer: 3000
+                            });
+                        });
+                    </script>
                 @endif
+
             </div>
         </nav>
         <section>
@@ -97,7 +108,7 @@
                                     @foreach ($Students as $student)
                                         <tr class="alert" role="alert">
                                             {{-- @dd($students) --}}
-                                            <th scope="row">{{ $student['id'] }}</th>
+                                            <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $student['fName'] }}</td>
                                             <td>{{ $student['lName'] }}</td> {{-- this object not array but magic method -> [''] --}}
                                             <td>{{ $student->email }}</td>
@@ -126,7 +137,9 @@
                             </table>
 
                             {{-- pagination --}}
-                            <div>{{ $Students->links('pagination::bootstrap-4') }}</div>
+                            <div class="d-flex justify-content-center">
+                                {{ $Students->links('pagination::bootstrap-4') }}
+                            </div>
 
 
                             <!-- Add Student Button -->
